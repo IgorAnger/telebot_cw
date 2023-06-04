@@ -126,8 +126,8 @@ def get_currencies(message):
     cur_choice_keyboard = [[types.InlineKeyboardButton('USD/EUR', callback_data='usd_eur'),
     types.InlineKeyboardButton('USD/GBP', callback_data='usd_gbp'),
     types.InlineKeyboardButton('USD/CHF', callback_data='usd_chf'),
-    types.InlineKeyboardButton('USD/BTC', callback_data='usd_btc'),
-    types.InlineKeyboardButton('USD/ETH', callback_data='usd_eth'),
+    types.InlineKeyboardButton('BTC/USD', callback_data='btc_usd'),
+    types.InlineKeyboardButton('ETH/USD', callback_data='eth_usd'),
     types.InlineKeyboardButton('Custom', callback_data='custom'),
     types.InlineKeyboardButton('Back to start', callback_data='go_start'),
     types.InlineKeyboardButton('Back to choice', callback_data='go_choice_cur')]]
@@ -181,9 +181,8 @@ def callback(call):
         markup.add(types.InlineKeyboardButton('USD/EUR', callback_data='usd_eur'),
         types.InlineKeyboardButton('USD/GBP', callback_data='usd_gbp'),
         types.InlineKeyboardButton('USD/CHF', callback_data='usd_chf'),
-        types.InlineKeyboardButton('USD/BTC', callback_data='usd_btc'),
-        types.InlineKeyboardButton('USD/BTC', callback_data='usd_btc'),
-        types.InlineKeyboardButton('USD/ETH', callback_data='usd_eth'),
+        types.InlineKeyboardButton('BTC/USD', callback_data='btc_usd'),
+        types.InlineKeyboardButton('ETH/USD', callback_data='eth_usd'),
         types.InlineKeyboardButton('Custom', callback_data='custom'),
         types.InlineKeyboardButton('Back to start', callback_data='go_start'))
         c_reply = bot.send_message(chat_id, 'Choose one of the pairs or press custom', reply_markup=markup)
@@ -252,12 +251,12 @@ def callback(call):
             bot.send_message(chat_id, f'Current {cur1.upper()}/{cur2.upper()} rate: {ex_rate}', reply_markup=markup)
         else:
             bot.send_message(chat_id, 'Something went wrong, try again', reply_markup=markup)
-    elif call.data == 'usd_btc':
+    elif call.data == 'btc_usd':
         markup = types.InlineKeyboardMarkup(row_width = 1)
         but_back_choice = types.InlineKeyboardButton('Back to choice', callback_data='c')
         markup.add(but_back_choice)
-        cur1 = 'USD'
-        cur2 = 'BTC'
+        cur1 = 'BTC'
+        cur2 = 'USD'
         currencies_r = requests.get(f'https://exchange-rates.abstractapi.com/v1/live/?api_key={C_TOKEN}&base={cur1}&target={cur2}')
         if currencies_r.status_code == 200:
             cur_data = json.loads(currencies_r.text)
@@ -266,12 +265,12 @@ def callback(call):
             bot.send_message(chat_id, f'Current {cur1.upper()}/{cur2.upper()} rate: {ex_rate}', reply_markup=markup)
         else:
             bot.send_message(chat_id, 'Something went wrong, try again', reply_markup=markup)
-    elif call.data == 'usd_eth':
+    elif call.data == 'eth_usd':
         markup = types.InlineKeyboardMarkup(row_width = 1)
         but_back_choice = types.InlineKeyboardButton('Back to choice', callback_data='c')
         markup.add(but_back_choice)
-        cur1 = 'USD'
-        cur2 = 'ETH'
+        cur1 = 'ETH'
+        cur2 = 'USD'
         currencies_r = requests.get(f'https://exchange-rates.abstractapi.com/v1/live/?api_key={C_TOKEN}&base={cur1}&target={cur2}')
         if currencies_r.status_code == 200:
             cur_data = json.loads(currencies_r.text)
