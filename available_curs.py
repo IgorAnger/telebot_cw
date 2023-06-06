@@ -43,12 +43,3 @@ cur_list=['ARS	Argentine Peso',
 'ZAR	South African Rand']
 def print_curs(cur_list = cur_list):
     return '\n'.join(cur_list)
-
-'''cur_choice_keyboard = [[types.InlineKeyboardButton('USD/EUR', callback_data='usd_eur'),
-types.InlineKeyboardButton('USD/GBP', callback_data='usd_gbp'),
-types.InlineKeyboardButton('USD/CHF', callback_data='usd_chf'),
-types.InlineKeyboardButton('USD/BTC', callback_data='usd_btc'),
-types.InlineKeyboardButton('USD/ETH', callback_data='usd_eth'),
-types.InlineKeyboardButton('Custom', callback_data='custom'),
-types.InlineKeyboardButton('Back to start', callback_data='go_start')]]
-markup = types.InlineKeyboardMarkup(cur_choice_keyboard)'''
